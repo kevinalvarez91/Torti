@@ -26,3 +26,16 @@ const char* get_os_username(){
         return "unknown"; 
     }
 }
+
+char* get_os_time(){
+    static char time_str[100]; 
+    time_t now = time(NULL); 
+    struct tm *local_time = localtime(&now); 
+
+    if(local_time == NULL){
+        return "unknown"; 
+    }
+
+    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", local_time);
+    return time_str;
+}
