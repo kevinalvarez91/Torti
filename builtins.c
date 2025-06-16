@@ -16,3 +16,13 @@ void startup_banner(){
     printf("\033[0m");
 
 }
+
+const char* get_os_username(){
+    struct passwd *pw = getpwuid(getuid()); 
+    if(pw){
+        return pw->pw_name; 
+    }
+    else{
+        return "unknown"; 
+    }
+}

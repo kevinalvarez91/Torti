@@ -2,23 +2,22 @@
 
 
 int main() {
-	startup_banner();
+    startup_banner();
 
-	int line_num = 0;
+    int line_num = 0;
+    const char *usr_name = get_os_username();
 
-	printf("USER_NAME_HEAR %d ", line_num);
-	line_num++;
-	char buffer[1024]; 
+    char buffer[1024];
 
-	// main loop
-	while (1) {
-		int input = getchar();
-		if (input == '\n') {
-			while (fgets(buffer, sizeof(buffer), stdin)) {
-				printf("USER_NAME_HEAR %d ", line_num++);
-			}
-		}
-	}
+    // First prompt
+    printf("%s %d ", usr_name, line_num++);
 
-	return 0;
+    // main loop
+    while (fgets(buffer, sizeof(buffer), stdin)) {
+        // buffer[strcspn(buffer, "\n")] = 0;
+
+        printf("%s %d ", usr_name, line_num++);
+    }
+
+    return 0;
 }
